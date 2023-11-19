@@ -4,6 +4,8 @@
 @section('header')
 @section('footer')
 <!---=====================-->
+
+
   
     <h1 class="text-center mt-3 mb-3">Fornecedores Cadastrados</h1>
     
@@ -31,6 +33,12 @@
         @endforeach
     </tbody>
 </table>
+
+<div class="container-button">
+    <button type="button" class="btn btn-warning">Alterar</button>
+    <button type="button" class="btn btn-danger">Excluir</button>
+    <button type="button" class="btn btn-info">Consultar</button>
+</div>
 
 <!---=====================-->
 @endsection
