@@ -34,11 +34,7 @@
     </tbody>
 </table>
 
-<div class="container-button">
-    <button type="button" class="btn btn-warning">Alterar</button>
-    <button type="button" class="btn btn-danger">Excluir</button>
-    <button type="button" class="btn btn-info">Consultar</button>
-</div>
+
 
 <!---=====================-->
 @endsection
