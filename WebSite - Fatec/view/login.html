@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <script type="text/javascript" href="../javascript/script.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    
+    <header class="container-header">
+        <div class="divLogo">
+            <img src="../Img/logo.png" alt="Logo da Fatec" class="logoFatec">
+        </div>
+    </header>
+
+    <main class="container-main">
+        <div class="container-login">
+
+            <div class="container-imagem">
+              <img src="../Img/ImageLogin.png" alt="Imagem" width="100%">
+            </div>
+
+            <form class="form-login" method="post" action="../controler/processar_login.php">
+
+                <div class="login-titulo">
+                    <h2>Bem-Vindo!</h2>
+                </div>
+
+              <div class="login-input">
+                <input type="text" placeholder="E-mail do Usuario" name="email" required>
+                <input type="password" placeholder="Senha" name="password" required>
+              </div>
+
+              <div class="login-senha">
+                <p>Esqueceu a Senha? <span><a href="#">Clique Aqui</a></span> </p>
+              </div>
+
+              <div class="login-button">
+                <button type="submit">Fazer Login</button>
+              </div>
+
+              <div class="login-suporte">
+                <p>Problemas para Entrar? <span><a href="#">Contatar o Suporte</a></span> </p>
+              </div>
+
+            </form>
+
+          </div>
+    </main>
+
+    <footer>
+          <p>Copyright © Fatec Presidente Prudente 2023</p>
+    </footer>
+
+    <!--JAVASCRIPT DA PAGINA-->
+
+    <script>
+
+      const themeButton = document.getElementById("themeButton");
+      const body = document.body;
+  
+      themeButton.addEventListener("click", () => 
+      {
+          if (body.classList.contains("dark-theme")) 
+          {
+              body.classList.remove("dark-theme");
+              body.classList.add("colorful-theme");
+          } else if (body.classList.contains("colorful-theme")) 
+          {
+              body.classList.remove("colorful-theme");
+          } else 
+          {
+              body.classList.add("dark-theme");
+          }
+      });
+
+  </script>    
+
+</body>
+</html>

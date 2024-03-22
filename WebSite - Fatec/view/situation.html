@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/situation.css">
+        <script type="text/javascript" src="../javascript/script.js"></script>
+        <title>Situação do Semestre</title>
+    </head>
+    <body>
+    
+        <header class="container-header">
+            <div class="divLogo">
+                <img src="../Img/logo.png" alt="Logo da Fatec" class="logoFatec">
+            </div>
+        </header>
+
+        <main class="container-main">
+
+            <div class="container-titulo">
+                <h1>Historico e Situação dos Semestres</h1>
+            </div>
+
+            <div class="container-geral">
+                <div class="container-semestres">
+                    <table class="table-geral">
+                        <tr>
+                            <th>Semestre</th>
+                            <th>Ano</th>
+                            <th>Situação</th>
+                        </tr>
+                        <tr>
+                            <td>1° Semestre</td>
+                            <td>2023</td>
+                            <td><button class="button-table off" onclick="situacaoBotao(this)">Desligado</button></td>
+                        </tr>
+                        <tr>
+                            <td>2° Semestre</td>
+                            <td>2023</td>
+                            <td><button class="button-table off" onclick="situacaoBotao(this)">Desligado</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!--BOTAO ADD NOVO SEMESTRE-->
+
+                <div class="botao-add-semestre">
+                    <button class="botao-add" onclick="adicionarSemestre()">+</button>
+                </div>
+
+            </div>
+        </main>
+
+        <footer>
+            <p>Copyright © Fatec Presidente Prudente 2023</p>
+        </footer>
+
+    </body>
+</html>
