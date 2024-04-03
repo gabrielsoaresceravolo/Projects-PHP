@@ -1,23 +1,31 @@
+# Ignorar diretórios de dependências e arquivos de log
 /vendor/
 node_modules/
 npm-debug.log
 yarn-error.log
 
-# Laravel 4 specific
+# Laravel 4 específico
 bootstrap/compiled.php
 app/storage/
 
-# Laravel 5 & Lumen specific
+# Laravel 5 & Lumen específico
 public/storage
 public/hot
 
-# Laravel 5 & Lumen specific with changed public path
+# Laravel 5 & Lumen específico com caminho público alterado
 public_html/storage
 public_html/hot
 
+# Ignorar arquivos de chave no diretório de armazenamento
 storage/*.key
+
+# Ignorar arquivos de configuração sensíveis
 .env
 Homestead.yaml
 Homestead.json
+
+# Ignorar diretório do Vagrant
 /.vagrant
+
+# Ignorar cache do PHPUnit
 .phpunit.result.cache
