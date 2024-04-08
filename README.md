@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/gabrielsoaresceravolo/PHP-Projects/assets/132103393/f4a88a79-079c-471d-bbe6-07b14917f8a3" alt="Repository Cover">
+  <img src="https://github.com/gabrielsoaresceravolo/Projects-PHP/assets/132103393/79490c1a-06e8-417e-bc46-583779d61611" alt="Repository Cover">
 </p>
 
 ![Completed](http://img.shields.io/static/v1?label=STATUS&message=COMPLETED&color=green&style=for-the-badge)
