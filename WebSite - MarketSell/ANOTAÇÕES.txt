@@ -1,9 +1,0 @@
-// SQL TABELAS
-
-/*
-    $sqli = mysqli_query($conn, "INSERT INTO users (nome, email, senha, ip, data) VALUES ('$nome', '$email', '$senhacrip', '$ip', '$data')");
-    $sqli = mysqli_query($conn, "UPDATE users SET nome='$nomeNOVO' WHERE email='$emailProcurado'");
-    $sqli = mysqli_query($conn, "DELETE FROM users WHERE email='$emailProcurado'");
-
-    RENAME TABLE nome_atual_da_tabela TO novo_nome_da_tabela;
-*/
