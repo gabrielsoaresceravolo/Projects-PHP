@@ -1,63 +1,68 @@
 <?php
+    require_once("config.php");
+    require_once("../model/usuario.php");
 
-    include_once('config.php');
+    session_start();
 
-    if(isset($_POST['submit']))
+    if(isset($_POST['submit'])) 
     {
-
         date_default_timezone_set('Brazil/East');
         $data = date("Y-m-d H:i:s");
-        $ip = $_SERVER['REMOTE_ADDR'];
 
         $nome = $_POST['nome'];
-        $nome = htmlspecialchars($nome,ENT_QUOTES);
-
         $email = $_POST['email'];
-        $email = htmlspecialchars($email,ENT_QUOTES);
-
         $senha = $_POST['senha'];
-        $senha = htmlspecialchars($senha,ENT_QUOTES);
 
-        if (empty($email)) 
+        // =========================================================================================
+
+        if (empty($email) || empty($senha)) 
         {
-            echo "<script>window.alert('Digite o e-mail!');</script>";
-            exit();
-        }
-        if (empty($senha)) 
-        {
-            echo "<script>window.alert('Digite a senha!');</script>";
+            echo "<script>window.alert('Preencha todos os campos obrigatórios!');</script>";
+            echo "<meta http-equiv='refresh' content='0; ../views/register.php'>";
             exit();
         }
         if (strlen($senha) < 6) 
         {
             echo "<script>window.alert('Sua senha deve conter no mínimo 6 digitos!');</script>";
+            echo "<meta http-equiv='refresh' content='0; ../views/register.php'>";
             exit();
         }
 
-        $veric = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
-        $verifc = mysqli_num_rows($veric);
+        // =========================================================================================
 
-        if($verifc > 0) // JA EXISTE UM CONTA
+        // Limpar os código - PROTEÇÃO CONTRA XSS
+        $nome = htmlspecialchars($nome, ENT_QUOTES);
+        $email = htmlspecialchars($email, ENT_QUOTES);
+        $senha = htmlspecialchars($senha, ENT_QUOTES);
+
+        // Criptografar a senha
+        $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+
+        global $conn;
+
+        $veric = prepareQuery($conn, "SELECT * FROM usuarios WHERE email=?", [&$email]);
+        $verifc = $veric->num_rows;
+
+        if($verifc > 0) 
         {
-            echo "<script>window.alert('Você já cadastrou!');</script>";
+            echo "<script>window.alert('Você já se cadastrou antes!');</script>";
             echo "<meta http-equiv='refresh' content='0; ../views/login.php'>";
             exit();
         } 
         else 
         {
-            $senhaCrip = hash('sha384', $senha);
+            $user = new User($nome, $email, $senhaCriptografada);
 
-            $sqli = mysqli_query($conn, "INSERT INTO users (nome, email, senha, ip, data) 
-            VALUES ('$nome', '$email', '$senhaCrip', '$ip', '$data')");
-            
-            if($sqli) // SUCESSO AO CADASTRAR
+            if($user->save()) 
             {
+                echo "<script>window.alert('Cadastrado com sucesso!');</script>";
                 header('Location: ../views/login.php');
                 exit();
             } 
-            else // ERRO AO CADASTRAR
+            else 
             {
                 echo "<script>window.alert('Erro ao registrar!');</script>";
+                echo "<meta http-equiv='refresh' content='0; ../views/register.php'>";
                 exit();
             }
         }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/04/2024 às 08:44
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 12-Abr-2024 às 22:52
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,79 +24,71 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `products`
+-- Estrutura da tabela `produtos`
 --
 
-CREATE TABLE `products` (
+CREATE TABLE `produtos` (
   `id` int(11) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `preco` decimal(10,2) DEFAULT NULL,
-  `tipo` varchar(255) DEFAULT NULL,
-  `data_fabricacao` date DEFAULT NULL,
-  `data_validade` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Despejando dados para a tabela `products`
---
-
-INSERT INTO `products` (`id`, `nome`, `preco`, `tipo`, `data_fabricacao`, `data_validade`) VALUES
-(4, 'FRUTA', 33.00, 'teste', '1922-04-05', '2005-05-04');
+  `nome` varchar(100) NOT NULL,
+  `preco` decimal(10,2) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `data_fabricacao` date NOT NULL,
+  `data_validade` date NOT NULL,
+  `data_criacao` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `users`
+-- Estrutura da tabela `usuarios`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `senha` varchar(255) DEFAULT NULL,
-  `ip` varchar(45) DEFAULT NULL,
-  `data` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `data_criacao` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `users`
+-- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `ip`, `data`) VALUES
-(2, 'Gabriel Soares Ceravolo', 'gabriel.ceravolo26@gmail.com', '0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454', '::1', '2024-04-10 02:50:20');
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `data_criacao`) VALUES
+(1, 'Gabriel Strider', 'gabriel@gmail', '$2y$10$XdkAAfCBOr.bTbEcbLOGNOcVMjo6/wzIBafIK8Qdrric83m8HbukC', '2024-04-13 01:41:39');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `products`
+-- Índices para tabela `produtos`
 --
-ALTER TABLE `products`
+ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `users`
+-- Índices para tabela `usuarios`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `products`
+-- AUTO_INCREMENT de tabela `produtos`
 --
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `users`
+-- AUTO_INCREMENT de tabela `usuarios`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

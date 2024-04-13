@@ -4,7 +4,6 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
-        // Obter o ID do produto do campo oculto
         $id = $_POST['id'];
 
         $nome = $_POST['nome'];
@@ -48,7 +47,7 @@
             exit();
         }
 
-        $query = "UPDATE products SET nome=?, preco=?, tipo=?, data_fabricacao=?, data_validade=? WHERE id=?";
+        $query = "UPDATE produtos SET nome=?, preco=?, tipo=?, data_fabricacao=?, data_validade=? WHERE id=?";
         $stmt = $conn -> prepare($query);
         $stmt -> bind_param("sssssi", $nome, $preco, $tipo, $data_fabricacao, $data_validade, $id);
         $stmt -> execute();
