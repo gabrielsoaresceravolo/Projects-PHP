@@ -1,18 +1,19 @@
 <?php
 
+require('config.php');
+
 class Database
 {
-    private $host = 'localhost';
-    private $dbname = 'mercado_nft';
-    private $username = 'root';
-    private $password = '';
-    public $mysqli;
+    private $mysqli;
 
     public function __construct()
     {
-        $this->mysqli = new mysqli($this->host, $this->username, $this->password, $this->dbname);
+        global $config;
 
-        if ($this->mysqli->connect_error) {
+        $this->mysqli = new mysqli($config['host'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($this->mysqli->connect_error) 
+        {
             die("Erro na conexão com o banco de dados: " . $this->mysqli->connect_error);
         }
     }
@@ -38,15 +39,18 @@ class Usuario
 
     public function inserir($nome, $email, $senha)
     {
+        $hashed_senha = password_hash($senha, PASSWORD_BCRYPT);
         $stmt = $this->mysqli->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $nome, $email, $senha);
+        $stmt->bind_param("sss", $nome, $email, $hashed_senha);
         return $stmt->execute();
     }
 
+
     public function atualizar($id, $nome, $email, $senha)
     {
+        $hashed_senha = password_hash($senha, PASSWORD_BCRYPT);
         $stmt = $this->mysqli->prepare("UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?");
-        $stmt->bind_param("sssi", $nome, $email, $senha, $id);
+        $stmt->bind_param("sssi", $nome, $email, $hashed_senha, $id);
         return $stmt->execute();
     }
 
@@ -56,7 +60,29 @@ class Usuario
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
+
+    // =================================================================================================================
+
+    private function emailCadastrado($email)
+    {
+        $stmt = $this->mysqli->prepare("SELECT email FROM usuarios WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        return $stmt->num_rows > 0;
+    }
+
+    private function Login($email)
+    {
+        $stmt = $this->mysqli->prepare("SELECT email FROM usuarios WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        return $stmt->num_rows > 0;
+    }
 }
+
+// =====================================================================================================================
 
 class Produto
 {
@@ -98,7 +124,8 @@ class Produto
     }
 }
 
-// Uso das classes
+// =====================================================================================================================
+
 $database = new Database();
 $usuario = new Usuario($database->mysqli);
 $produto = new Produto($database->mysqli);

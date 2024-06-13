@@ -18,7 +18,7 @@
             $this->preco = $preco;
         }
 
-        // ===== Getters =====
+        // ==================== Getters ====================
         
         public function getId() 
         {
@@ -45,7 +45,7 @@
             return $this->tamanho;
         }
 
-        // ===== Setters =====
+        // ==================== Setters ====================
 
         public function setId($id) 
         {

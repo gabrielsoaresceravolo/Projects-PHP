@@ -1,7 +1,9 @@
 <?php
 
-    require('../../config/database.php');
+    require('../../database/database.php');
 
-    // $produto->inserir("Produto A", "Descrição do Produto A", 100.00);
-
+    class ProdutosController
+    {
+        // --------------------------------
+    }
 ?>
